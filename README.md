@@ -8,7 +8,7 @@ Quartz is a set of tools that helps you publish your [digital garden](https://jz
 
 [Join the Discord Community](https://discord.gg/cRFFHYye7t)
 
-## Sponsors
+## Sponsors.
 
 <p align="center">
   <a href="https://github.com/sponsors/jackyzha0">
