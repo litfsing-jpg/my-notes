@@ -1,3 +1,37 @@
-@use "./base.scss";
+// Стили для создания "блочного" вида (WP Reboot Style)
 
-// put your custom CSS here!
+body {
+  background-color: #f0f2f5 !important; // Светло-серый фон вокруг сайта
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.page {
+  background-color: #ffffff; // Белый блок контента
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 3rem;
+  border-radius: 12px; // Скругленные углы
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05); // Мягкая тень блока
+  border: 1px solid #e1e4e8; // Тонкая граница
+  max-width: 800px; // Ограничиваем ширину для удобства чтения
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Цвет ссылок как в профессиональных блогах
+a {
+  color: #2b6cb0 !important;
+  text-decoration: none;
+  font-weight: 500;
+  
+  &:hover {
+    color: #2c5282 !important;
+    text-decoration: underline;
+  }
+}
+
+// Улучшаем вид заголовков
+h1, h2, h3 {
+  color: #1a202c;
+  margin-top: 1.5rem;
+}
