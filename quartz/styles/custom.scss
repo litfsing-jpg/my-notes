@@ -278,3 +278,82 @@ p, li {
     -webkit-line-clamp: 2;
   }
 }
+
+// =====================================
+// ИЗОБРАЖЕНИЯ В СТАТЬЯХ (АДАПТИВНЫЕ)
+// =====================================
+
+// Все изображения внутри контента статьи
+.content img,
+article img,
+.page-content img,
+p img {
+  // Базовые стили
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 2rem auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  // На ПК: максимум 700px
+  @media (min-width: 769px) {
+    max-width: 700px;
+  }
+
+  // На планшетах: 90% ширины
+  @media (max-width: 768px) and (min-width: 481px) {
+    max-width: 90%;
+    margin: 1.5rem auto;
+  }
+
+  // На мобильных: 100% ширины экрана, но с отступами
+  @media (max-width: 480px) {
+    max-width: 100%;
+    width: 100% !important;
+    margin: 1rem auto;
+    border-radius: 4px; // Меньше скругление на мобильных
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  }
+}
+
+// Подпись под изображением (если есть)
+.content img + em,
+article img + em,
+p img + em {
+  display: block;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: -1.5rem;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+
+  @media (max-width: 480px) {
+    font-size: 0.85rem;
+    margin-top: -0.75rem;
+  }
+}
+
+// Для изображений в параграфах
+p {
+  img {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+// Убираем лишние отступы если изображение в ссылке
+a img {
+  margin: 1rem auto;
+}
+
+// Галереи (несколько изображений подряд)
+.content img + img,
+article img + img {
+  margin-top: 1rem;
+
+  @media (max-width: 480px) {
+    margin-top: 0.5rem;
+  }
+}
