@@ -7,7 +7,7 @@ import { pageResources, renderPage } from "../../components/renderPage"
 import { FullPageLayout } from "../../cfg"
 import { pathToRoot } from "../../util/path"
 import { defaultContentPageLayout, sharedPageComponents } from "../../../quartz.layout"
-import { Content } from "../../components"
+import { Content, HomePage } from "../../components"
 import { styleText } from "util"
 import { write } from "./helpers"
 import { BuildCtx } from "../../util/ctx"
@@ -25,6 +25,11 @@ async function processContent(
 ) {
   const slug = fileData.slug!
   const cfg = ctx.cfg.configuration
+
+  // Use HomePage component for the index page, Content for others
+  const pageBody = slug === "index" ? HomePage() : opts.pageBody
+  const pageOpts = { ...opts, pageBody }
+
   const externalResources = pageResources(pathToRoot(slug), resources)
   const componentData: QuartzComponentProps = {
     ctx,
@@ -36,7 +41,7 @@ async function processContent(
     allFiles,
   }
 
-  const content = renderPage(cfg, slug, componentData, opts, externalResources)
+  const content = renderPage(cfg, slug, componentData, pageOpts, externalResources)
   return write({
     ctx,
     content,

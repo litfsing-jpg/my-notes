@@ -59,47 +59,54 @@ type Props = {
 
 export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit, sort }: Props) => {
   const sorter = sort ?? byDateAndAlphabeticalFolderFirst(cfg)
-  let list = allFiles.sort(sorter)
+  // Фильтруем только статьи (убираем папки и служебные файлы)
+  let list = allFiles
+    .filter((file) => {
+      const slug = file.slug || ""
+      // Показываем только обычные статьи, исключаем папки и служебные файлы
+      return !slug.includes("SEO для инфобизнеса") &&
+             !slug.endsWith("/") && // не папки
+             file.frontmatter?.title && // есть заголовок
+             slug !== "index" // не index
+    })
+    .sort(sorter)
+
   if (limit) {
     list = list.slice(0, limit)
   }
 
   return (
-    <ul class="section-ul">
+    <div class="blog-cards-grid">
       {list.map((page) => {
         const title = page.frontmatter?.title
         const tags = page.frontmatter?.tags ?? []
+        const description = page.description
+        const image = page.frontmatter?.image || page.frontmatter?.cover
 
         return (
-          <li class="section-li">
-            <div class="section">
-              <p class="meta">
-                {page.dates && <Date date={getDate(cfg, page)!} locale={cfg.locale} />}
-              </p>
-              <div class="desc">
-                <h3>
-                  <a href={resolveRelative(fileData.slug!, page.slug!)} class="internal">
-                    {title}
-                  </a>
-                </h3>
+          <a href={resolveRelative(fileData.slug!, page.slug!)} class="blog-card">
+            {image && (
+              <div class="blog-card-image">
+                <img src={image} alt={title} loading="lazy" />
               </div>
-              <ul class="tags">
-                {tags.map((tag) => (
-                  <li>
-                    <a
-                      class="internal tag-link"
-                      href={resolveRelative(fileData.slug!, `tags/${tag}` as FullSlug)}
-                    >
-                      {tag}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+            )}
+            <div class="blog-card-content">
+              <h3 class="blog-card-title">{title}</h3>
+              {description && (
+                <p class="blog-card-description">{description}</p>
+              )}
+              {tags.length > 0 && (
+                <div class="blog-card-tags">
+                  {tags.map((tag) => (
+                    <span class="blog-card-tag">{tag}</span>
+                  ))}
+                </div>
+              )}
             </div>
-          </li>
+          </a>
         )
       })}
-    </ul>
+    </div>
   )
 }
 

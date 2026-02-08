@@ -37,46 +37,38 @@ export default ((userOpts?: Partial<Options>) => {
     const remaining = Math.max(0, pages.length - opts.limit)
     return (
       <div class={classNames(displayClass, "recent-notes")}>
-        <h3>{opts.title ?? i18n(cfg.locale).components.recentNotes.title}</h3>
-        <ul class="recent-ul">
+        <h2 class="section-title">{opts.title ?? i18n(cfg.locale).components.recentNotes.title}</h2>
+        <div class="blog-cards-grid">
           {pages.slice(0, opts.limit).map((page) => {
             const title = page.frontmatter?.title ?? i18n(cfg.locale).propertyDefaults.title
             const tags = page.frontmatter?.tags ?? []
+            const description = page.description
+            const image = page.frontmatter?.image || page.frontmatter?.cover
 
             return (
-              <li class="recent-li">
-                <div class="section">
-                  <div class="desc">
-                    <h3>
-                      <a href={resolveRelative(fileData.slug!, page.slug!)} class="internal">
-                        {title}
-                      </a>
-                    </h3>
+              <a href={resolveRelative(fileData.slug!, page.slug!)} class="blog-card">
+                {image && (
+                  <div class="blog-card-image">
+                    <img src={image} alt={title} loading="lazy" />
                   </div>
-                  {page.dates && (
-                    <p class="meta">
-                      <Date date={getDate(cfg, page)!} locale={cfg.locale} />
-                    </p>
+                )}
+                <div class="blog-card-content">
+                  <h3 class="blog-card-title">{title}</h3>
+                  {description && (
+                    <p class="blog-card-description">{description}</p>
                   )}
-                  {opts.showTags && (
-                    <ul class="tags">
+                  {opts.showTags && tags.length > 0 && (
+                    <div class="blog-card-tags">
                       {tags.map((tag) => (
-                        <li>
-                          <a
-                            class="internal tag-link"
-                            href={resolveRelative(fileData.slug!, `tags/${tag}` as FullSlug)}
-                          >
-                            {tag}
-                          </a>
-                        </li>
+                        <span class="blog-card-tag">{tag}</span>
                       ))}
-                    </ul>
+                    </div>
                   )}
                 </div>
-              </li>
+              </a>
             )
           })}
-        </ul>
+        </div>
         {opts.linkToMore && remaining > 0 && (
           <p>
             <a href={resolveRelative(fileData.slug!, opts.linkToMore)}>

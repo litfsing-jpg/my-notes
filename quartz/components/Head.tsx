@@ -36,6 +36,73 @@ export default (() => {
     )
     const ogImageDefaultPath = `https://${cfg.baseUrl}/static/og-image.png`
 
+    // Schema.org structured data для медицинского контента
+    const author = fileData.frontmatter?.author ?? "Елена Здоровцева"
+    const datePublished = fileData.dates?.published ?? fileData.dates?.created
+    const dateModified = fileData.dates?.modified ?? fileData.dates?.created
+
+    // Breadcrumbs для Schema.org
+    const slugParts = fileData.slug!.split("/")
+    const breadcrumbItems = slugParts.map((part, index) => {
+      const itemPath = slugParts.slice(0, index + 1).join("/")
+      return {
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": part === "index" ? "Главная" : part.replaceAll("-", " "),
+        "item": `https://${cfg.baseUrl}/${itemPath}`
+      }
+    })
+
+    const schemaOrgData = {
+      "@context": "https://schema.org",
+      "@graph": [
+        // Основная страница (MedicalWebPage для health контента)
+        {
+          "@type": "MedicalWebPage",
+          "@id": socialUrl,
+          "url": socialUrl,
+          "name": title,
+          "headline": title,
+          "description": description,
+          "datePublished": datePublished,
+          "dateModified": dateModified,
+          "author": {
+            "@type": "Person",
+            "name": author,
+            "jobTitle": "Нутрициолог",
+            "description": "Специалист по нутрициологии и здоровому питанию"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": cfg.pageTitle,
+            "logo": {
+              "@type": "ImageObject",
+              "url": `https://${cfg.baseUrl}/static/icon.png`
+            }
+          },
+          "inLanguage": cfg.locale ?? "ru-RU",
+          "medicalAudience": {
+            "@type": "MedicalAudience",
+            "audienceType": "Patient"
+          }
+        },
+        // Breadcrumbs для навигации
+        fileData.slug !== "index" && {
+          "@type": "BreadcrumbList",
+          "itemListElement": breadcrumbItems
+        },
+        // WebSite для поиска
+        {
+          "@type": "WebSite",
+          "@id": `https://${cfg.baseUrl}/#website`,
+          "url": `https://${cfg.baseUrl}`,
+          "name": cfg.pageTitle,
+          "description": "Научный подход к здоровью и питанию",
+          "inLanguage": cfg.locale ?? "ru-RU"
+        }
+      ].filter(Boolean) // Удаляем false элементы (breadcrumbs на главной)
+    }
+
     return (
       <head>
         <title>{title}</title>
@@ -97,6 +164,11 @@ export default (() => {
             return resource
           }
         })}
+
+        {/* Schema.org structured data для SEO */}
+        <script type="application/ld+json">
+          {JSON.stringify(schemaOrgData)}
+        </script>
       </head>
     )
   }
