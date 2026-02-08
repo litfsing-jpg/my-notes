@@ -124,7 +124,12 @@ date: 2026-02-08
 
 
 
-<a href="https://disk.yandex.ru/i/O2Z40KgAxgOSsg" style="background-color: #0088cc; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none;">ЗАРЕГИСТРИРОВАТЬСЯ НА МАРАФОН</a>
+```html
+<div class="cta-container">
+  <a href="https://lk.getfit.su/link/67srjzjg1" class="cta-button">
+    ЗАРЕГИСТРИРОВАТЬСЯ НА МАРАФОН
+
+```
 ---
 
 ## Ошибки в питании, которые совершают даже на ПП
