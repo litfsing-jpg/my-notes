@@ -122,6 +122,9 @@ date: 2026-02-08
 
 [ЗАРЕГИСТРИРОВАТЬСЯ НА МАРАФОН]
 
+
+
+<a href="https://disk.yandex.ru/i/O2Z40KgAxgOSsg" style="background-color: #0088cc; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none;">ЗАРЕГИСТРИРОВАТЬСЯ НА МАРАФОН</a>
 ---
 
 ## Ошибки в питании, которые совершают даже на ПП
