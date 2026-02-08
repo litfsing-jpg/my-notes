@@ -5,7 +5,10 @@ import * as Component from "./quartz/components"
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [
-    Component.PageTitle(),
+    Component.ConditionalRender({
+      component: Component.PageTitle(),
+      condition: (page) => page.fileData.slug === "index",
+    }),
   ],
   afterBody: [],
   footer: Component.Footer({
@@ -27,11 +30,11 @@ export const defaultContentPageLayout: PageLayout = {
     }),
     Component.ArticleTitle(),
     Component.TagList(),
+    Component.TableOfContents(),
   ],
   afterBody: [],
   left: [],
   right: [
-    Component.DesktopOnly(Component.TableOfContents()),
     Component.DesktopOnly(Component.Backlinks()),
   ],
 }
