@@ -509,8 +509,8 @@ a.button {
 // =====================================
 
 // Параграф который содержит ТОЛЬКО одну ссылку = кнопка
-// Работает для любых ссылок на getfit.su
-p:has(> a:only-child[href*="getfit.su"]) {
+// Работает для ЛЮБЫХ ссылок (YouTube, партнерки, любые внешние)
+p:has(> a:only-child) {
   text-align: center !important;
   margin: 2rem auto !important;
 
