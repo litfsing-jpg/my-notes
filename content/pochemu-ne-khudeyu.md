@@ -120,34 +120,15 @@ date: 2026-02-08
 
 Приглашаю на бесплатный 3-дневный марафон «Нормализация веса за 12 недель». Разберём ваши анализы с практикующим нутрициологом и составим персональный план. Без воды и общих советов только конкретика под вас.
 
-[ЗАРЕГИСТРИРОВАТЬСЯ НА МАРАФОН]
+<p style="text-align: center; margin: 2rem 0;">
+<a href="https://lk.getfit.su/link/67srjzjg1" style="display: inline-block; background: linear-gradient(135deg, #53c257 0%, #2f9e35 100%); color: white; padding: 14px 32px; text-decoration: none; border-radius: 8px; font-weight: 600; box-shadow: 0 4px 12px rgba(83, 194, 87, 0.3);">ЗАРЕГИСТРИРОВАТЬСЯ НА МАРАФОН</a>
+</p>
 
+<p style="text-align: center; font-size: 13px; color: #9ca3af; font-style: italic;">
+Реклама. ООО "ЭДПРО", ИНН 7704394080<br>
+erid: 2VtzqXXXXXXXXXXX
+</p>
 
-```
-<div class="cta-container">
-  <a href="https://lk.getfit.su/link/67srjzjg1" class="cta-button">
-    ЗАРЕГИСТРИРОВАТЬСЯ НА МАРАФОН
-  </a>
-  <p class="ad-disclaimer">
-    Реклама. ООО "ЭДПРО", ИНН 7704394080<br>
-    erid: 2VtzqXXXXXXXXXXX
-  </p>
-</div>
-
-```
-
-
-```html
-<div class="cta-container">
-  <a href="https://lk.getfit.su/link/67srjzjg1" class="cta-button">
-    ЗАРЕГИСТРИРОВАТЬСЯ НА МАРАФОН
-  </a>
-  <p class="ad-disclaimer">
-    Реклама. ООО "ЭДПРО", ИНН 7704394080<br>
-    erid: 2VtzqXXXXXXXXXXX
-  </p>
-</div>
-```
 ---
 
 ## Ошибки в питании, которые совершают даже на ПП
@@ -288,7 +269,14 @@ date: 2026-02-08
 
 Не откладывайте. Тело уже сейчас посылает сигналы осталось их услышать.
 
-[ЗАРЕГИСТРИРОВАТЬСЯ БЕСПЛАТНО]
+<p style="text-align: center; margin: 2rem 0;">
+<a href="https://lk.getfit.su/link/67srjzjg1" style="display: inline-block; background: linear-gradient(135deg, #53c257 0%, #2f9e35 100%); color: white; padding: 14px 32px; text-decoration: none; border-radius: 8px; font-weight: 600; box-shadow: 0 4px 12px rgba(83, 194, 87, 0.3);">ЗАРЕГИСТРИРОВАТЬСЯ БЕСПЛАТНО</a>
+</p>
+
+<p style="text-align: center; font-size: 13px; color: #9ca3af; font-style: italic;">
+Реклама. ООО "ЭДПРО", ИНН 7704394080<br>
+erid: 2VtzqXXXXXXXXXXX
+</p>
 
 ---
 
