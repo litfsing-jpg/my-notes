@@ -505,46 +505,53 @@ a.button {
 }
 
 // =====================================
-// АВТОМАТИЧЕСКИЕ КНОПКИ ДЛЯ ПАРТНЁРСКИХ ССЫЛОК
+// АВТОМАТИЧЕСКИЕ КНОПКИ CTA
 // =====================================
 
-// Все ссылки на lk.getfit.su автоматически становятся кнопками!
-a[href*="lk.getfit.su"] {
-  display: inline-block !important;
-  background: linear-gradient(135deg, #53c257 0%, #2f9e35 100%) !important;
-  color: white !important;
-  padding: 14px 32px !important;
-  text-decoration: none !important;
-  border-radius: 8px !important;
-  font-weight: 600 !important;
-  font-family: Inter, -apple-system, sans-serif !important;
-  box-shadow: 0 4px 12px rgba(83, 194, 87, 0.3) !important;
-  transition: all 0.3s ease !important;
-  margin: 1.5rem auto !important;
+// Параграф который содержит ТОЛЬКО одну ссылку = кнопка
+// Работает для любых ссылок на getfit.su
+p:has(> a:only-child[href*="getfit.su"]) {
   text-align: center !important;
+  margin: 2rem auto !important;
 
-  &:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 6px 16px rgba(83, 194, 87, 0.4) !important;
-    background: linear-gradient(135deg, #2f9e35 0%, #53c257 100%) !important;
+  a {
+    display: inline-block !important;
+    background: linear-gradient(135deg, #53c257 0%, #2f9e35 100%) !important;
+    color: white !important;
+    padding: 14px 32px !important;
     text-decoration: none !important;
-  }
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    font-family: Inter, -apple-system, sans-serif !important;
+    font-size: 16px !important;
+    box-shadow: 0 4px 12px rgba(83, 194, 87, 0.3) !important;
+    transition: all 0.3s ease !important;
 
-  &:active {
-    transform: translateY(0) !important;
-  }
+    &:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 16px rgba(83, 194, 87, 0.4) !important;
+      background: linear-gradient(135deg, #2f9e35 0%, #53c257 100%) !important;
+      text-decoration: none !important;
+    }
 
-  // На мобильных - на всю ширину
-  @media (max-width: 480px) {
-    display: block !important;
-    width: 100% !important;
-    padding: 16px 24px !important;
-    font-size: 15px !important;
-  }
-}
+    &:active {
+      transform: translateY(0) !important;
+    }
 
-// Параграф с партнёрской ссылкой - центрируем
-p:has(a[href*="lk.getfit.su"]) {
-  text-align: center !important;
-  margin: 2rem 0 !important;
+    // На мобильных - на всю ширину экрана, по центру
+    @media (max-width: 768px) {
+      display: block !important;
+      width: 90% !important;
+      max-width: 400px !important;
+      margin: 0 auto !important;
+      padding: 16px 24px !important;
+      font-size: 15px !important;
+      text-align: center !important;
+    }
+
+    @media (max-width: 480px) {
+      width: 95% !important;
+      padding: 14px 20px !important;
+    }
+  }
 }
