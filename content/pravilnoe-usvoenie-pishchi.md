@@ -4,7 +4,7 @@ description: Как улучшить усвояемость пищи, совет
 tags:
   - питание
   - здоровье
-image: obsidian://open?vault=my-notes&file=content%2Fimages%2Fcovers%2Fhealth-nutrition-food.webp
+image: /images/covers/health-nutrition.webp
 date: 2026-02-08
 ---
 
