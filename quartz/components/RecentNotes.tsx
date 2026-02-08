@@ -49,7 +49,17 @@ export default ((userOpts?: Partial<Options>) => {
               <a href={resolveRelative(fileData.slug!, page.slug!)} class="blog-card">
                 {image && (
                   <div class="blog-card-image">
-                    <img src={image} alt={title} loading="lazy" />
+                    <img
+                      src={image}
+                      alt={title}
+                      loading="lazy"
+                      onError={(e) => {
+                        // Hide image container if loading fails
+                        const target = e.target as HTMLImageElement
+                        const container = target.parentElement
+                        if (container) container.style.display = 'none'
+                      }}
+                    />
                   </div>
                 )}
                 <div class="blog-card-content">
