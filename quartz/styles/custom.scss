@@ -536,6 +536,12 @@ a.button {
       opacity: 1 !important;
       width: 20px !important;
       height: 20px !important;
+      transition: transform 0.3s ease !important;
+    }
+
+    // Когда свернуто - поворачиваем стрелку
+    &.collapsed svg.fold {
+      transform: rotate(-90deg) !important;
     }
   }
 
@@ -543,6 +549,17 @@ a.button {
   ul.toc-content {
     margin-top: 1rem !important;
     padding: 0 !important;
+    max-height: 1000px !important;
+    overflow: hidden !important;
+    transition: max-height 0.3s ease, opacity 0.3s ease !important;
+    opacity: 1 !important;
+
+    // Когда свернуто - скрываем список
+    &.collapsed {
+      max-height: 0 !important;
+      opacity: 0 !important;
+      margin-top: 0 !important;
+    }
 
     li {
       margin: 0.5rem 0 !important;
@@ -550,7 +567,7 @@ a.button {
 
       a {
         color: #53c257 !important;
-        opacity: 1 !important; // Убираем бледность
+        opacity: 1 !important;
         text-decoration: none !important;
         font-size: 0.95rem !important;
         line-height: 1.6 !important;
@@ -568,6 +585,16 @@ a.button {
           opacity: 1 !important;
           font-weight: 600 !important;
         }
+      }
+
+      // Показываем ТОЛЬКО H2 (depth-2)
+      // Скрываем H1, H3, H4, H5, H6
+      &.depth-1,
+      &.depth-3,
+      &.depth-4,
+      &.depth-5,
+      &.depth-6 {
+        display: none !important;
       }
     }
   }
