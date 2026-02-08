@@ -123,12 +123,16 @@ date: 2026-02-08
 [ЗАРЕГИСТРИРОВАТЬСЯ НА МАРАФОН]
 
 
-
 ```html
 <div class="cta-container">
   <a href="https://lk.getfit.su/link/67srjzjg1" class="cta-button">
     ЗАРЕГИСТРИРОВАТЬСЯ НА МАРАФОН
-
+  </a>
+  <p class="ad-disclaimer">
+    Реклама. ООО "ЭДПРО", ИНН 7704394080<br>
+    erid: 2VtzqXXXXXXXXXXX
+  </p>
+</div>
 ```
 ---
 
