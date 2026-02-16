@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Host: app.leadfunnel.online
+Sitemap: https://app.leadfunnel.online/sitemap-index.xml

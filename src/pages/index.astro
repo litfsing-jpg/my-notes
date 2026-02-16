@@ -1,0 +1,101 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const sections = [
+  {
+    id: 'seo',
+    title: 'SEO-продвижение',
+    description: 'Семантика, статьи, технический SEO',
+    icon: '🔍',
+    count: 3,
+    href: '/guides/seo/',
+  },
+  {
+    id: 'funnels',
+    title: 'Воронки продаж',
+    description: 'От трафика к заявкам и продажам',
+    icon: '🔽',
+    count: 2,
+    href: '/guides/funnels/',
+  },
+  {
+    id: 'monetization',
+    title: 'Монетизация',
+    description: 'Партнёрки, инфопродукты, реклама',
+    icon: '💰',
+    count: 1,
+    href: '/guides/monetization/',
+  },
+  {
+    id: 'ai-tools',
+    title: 'ИИ-инструменты',
+    description: 'ChatGPT, Claude, автоматизация',
+    icon: '🤖',
+    count: 2,
+    href: '/guides/ai-tools/',
+  },
+];
+---
+
+<Layout
+  title="ВоронщикPro — SEO, воронки и монетизация трафика"
+  description="Практические гайды по SEO, воронкам продаж и монетизации трафика от Артёма Воронова. Бесплатно и без воды."
+>
+  <div class="max-w-3xl mx-auto px-4 py-16">
+
+    <!-- Badge -->
+    <div class="flex justify-center mb-8">
+      <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border text-sm text-gray-400">
+        🧲 Материалы от Артёма Воронова
+      </span>
+    </div>
+
+    <!-- Hero -->
+    <div class="text-center mb-16">
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+        SEO, воронки и монетизация
+      </h1>
+      <p class="text-xl text-gray-400">
+        Всё что нужно чтобы трафик превращался в деньги
+      </p>
+    </div>
+
+    <!-- Разделы -->
+    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-4">РАЗДЕЛЫ ОБУЧЕНИЯ</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-12">
+      {sections.map((section) => (
+        <a
+          href={section.href}
+          class="flex items-center gap-4 p-4 bg-card rounded-lg border border-border hover:border-accent hover:bg-card-hover transition-all group"
+        >
+          <span class="text-2xl">{section.icon}</span>
+          <div class="flex-1 min-w-0">
+            <div class="text-white font-medium group-hover:text-accent transition-colors">
+              {section.title}
+            </div>
+            <div class="text-gray-500 text-sm">{section.description}</div>
+          </div>
+          <div class="text-gray-600 text-sm flex-shrink-0">
+            {section.count} ур.
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- Разделитель -->
+    <div class="border-t border-border my-8"></div>
+
+    <!-- Об авторе -->
+    <div class="flex items-center gap-4 p-4 bg-card rounded-lg border border-border">
+      <div class="w-12 h-12 rounded-full bg-blue-600/20 flex items-center justify-center text-accent font-bold text-lg flex-shrink-0">
+        А
+      </div>
+      <div>
+        <div class="text-white font-medium">Артём Воронов</div>
+        <div class="text-gray-400 text-sm">SEO-специалист и контент-маркетолог</div>
+      </div>
+      <a href="/about/" class="ml-auto text-accent text-sm hover:underline flex-shrink-0">Об авторе →</a>
+    </div>
+
+  </div>
+</Layout>
