@@ -63,7 +63,7 @@ const categoryTitle = categoryTitles[category] ?? category;
             <div class="space-y-2">
               {lessons.map((lesson) => (
                 <a
-                  href={`/guides/${lesson.data.category}/${lesson.slug}/`}
+                  href={`/guides/${lesson.data.category}/${lesson.slug.split('/').pop()}/`}
                   class="flex items-center gap-4 p-4 bg-card rounded-lg border border-border hover:border-accent hover:bg-card-hover transition-all group"
                 >
                   <span class="text-lg flex-shrink-0">{lesson.data.icon}</span>
