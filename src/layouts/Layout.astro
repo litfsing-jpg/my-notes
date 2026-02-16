@@ -14,6 +14,26 @@ const {
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// BreadcrumbList для всех страниц кроме главной
+const pathParts = Astro.url.pathname.split('/').filter(Boolean);
+const breadcrumbs = [
+  { name: 'Главная', url: 'https://app.leadfunnel.online/' },
+  ...pathParts.map((p, i) => ({
+    name: p.charAt(0).toUpperCase() + p.slice(1).replace(/-/g, ' '),
+    url: `https://app.leadfunnel.online/${pathParts.slice(0, i + 1).join('/')}/`
+  }))
+];
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbs.map((c, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": c.name,
+    "item": c.url
+  }))
+};
 ---
 
 <!DOCTYPE html>
@@ -41,21 +61,36 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
 
-    <!-- Schema.org WebSite (только главная) -->
+    <!-- Schema.org WebSite + Organization (главная) -->
     {Astro.url.pathname === '/' && (
       <script type="application/ld+json" set:html={JSON.stringify({
         "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "ВоронщикPro",
-        "url": "https://app.leadfunnel.online",
-        "description": "SEO, воронки продаж и монетизация трафика",
-        "inLanguage": "ru-RU",
-        "author": {
-          "@type": "Person",
-          "name": "Артём Воронов"
-        }
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "name": "ВоронщикPro",
+            "url": "https://app.leadfunnel.online",
+            "description": "SEO, воронки продаж и монетизация трафика. Практические гайды от Артёма Воронова.",
+            "inLanguage": "ru-RU",
+            "author": { "@type": "Person", "name": "Артём Воронов" }
+          },
+          {
+            "@type": "Organization",
+            "name": "ВоронщикPro",
+            "url": "https://app.leadfunnel.online",
+            "sameAs": ["https://t.me/voronshikpro"]
+          }
+        ]
       })} />
     )}
+
+    <!-- Schema.org BreadcrumbList (все страницы кроме главной) -->
+    {pathParts.length > 0 && (
+      <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    )}
+
+    <!-- Дополнительные Schema-блоки от страниц (Article и т.д.) -->
+    <slot name="head" />
   </head>
   <body class="bg-bg text-white min-h-screen flex flex-col">
     <header class="border-b border-border">
@@ -79,7 +114,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <footer class="border-t border-border mt-16">
       <div class="max-w-4xl mx-auto px-4 py-6 flex items-center justify-between text-sm text-gray-500">
-        <span>© {new Date().getFullYear()} ВоронщикPro. Все права защищены.</span>
+        <div class="flex items-center gap-4">
+          <span>© {new Date().getFullYear()} ВоронщикPro</span>
+          <a href="/privacy/" class="hover:text-white transition-colors">Политика конфиденциальности</a>
+        </div>
         <div class="flex items-center gap-4">
           <!-- YouTube -->
           <a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="hover:text-white transition-colors">

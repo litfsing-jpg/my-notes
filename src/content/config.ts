@@ -11,6 +11,7 @@ const guides = defineCollection({
     moduleTitle: z.string(),
     order: z.number(),
     icon: z.string().default('📄'),
+    pubDate: z.date().optional(),
   }),
 });
 

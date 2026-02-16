@@ -42,12 +42,41 @@ const categoryTitles: Record<string, string> = {
 };
 
 const categoryTitle = categoryTitles[guide.data.category] ?? guide.data.category;
+
+const canonicalURL = new URL(
+  `/guides/${guide.data.category}/${Astro.params.slug}/`,
+  Astro.site
+);
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": guide.data.title,
+  "description": guide.data.description,
+  "author": {
+    "@type": "Person",
+    "name": "Артём Воронов",
+    "url": "https://app.leadfunnel.online/about/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ВоронщикPro",
+    "url": "https://app.leadfunnel.online"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalURL.toString()
+  },
+  "inLanguage": "ru-RU",
+  ...(guide.data.pubDate ? { "datePublished": guide.data.pubDate.toISOString() } : {}),
+};
 ---
 
 <Layout
   title={`${guide.data.title} | ВоронщикPro`}
   description={guide.data.description}
 >
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(articleSchema)} />
   <div class="max-w-3xl mx-auto px-4 py-12">
 
     <!-- Назад к разделу -->
@@ -58,10 +87,17 @@ const categoryTitle = categoryTitles[guide.data.category] ?? guide.data.category
       ← {categoryTitle}
     </a>
 
-    <!-- Лейбл модуля -->
-    <p class="text-xs text-gray-500 mb-3 tracking-wide">
-      Модуль {guide.data.module}: {guide.data.moduleTitle}
-    </p>
+    <!-- Лейбл модуля + дата -->
+    <div class="flex items-center gap-4 mb-3">
+      <p class="text-xs text-gray-500 tracking-wide">
+        Модуль {guide.data.module}: {guide.data.moduleTitle}
+      </p>
+      {guide.data.pubDate && (
+        <time datetime={guide.data.pubDate.toISOString()} class="text-xs text-gray-500">
+          {guide.data.pubDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })}
+        </time>
+      )}
+    </div>
 
     <!-- Заголовок -->
     <h1 class="text-3xl font-bold text-white mb-8">{guide.data.title}</h1>
